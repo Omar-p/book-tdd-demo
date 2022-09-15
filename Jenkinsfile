@@ -12,11 +12,7 @@ pipeline {
   post {
     success {
       archiveArtifacts './target/*.jar'
-    }
-
-    always {
-      junit './target/surefire-reports/*.xml'
-//       cleanWs()
+      junit './target/surefire-reports/TEST*.xml'
     }
   }
 }
