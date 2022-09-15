@@ -14,5 +14,9 @@ pipeline {
       archiveArtifacts 'target/*.jar'
       junit 'target/surefire-reports/TEST*.xml'
     }
+
+    always {
+      cleanWs()
+    }
   }
 }
