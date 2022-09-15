@@ -10,11 +10,6 @@ pipeline {
   }
 
   post {
-    success {
-      archiveArtifacts 'target/*.jar'
-      junit 'target/surefire-reports/TEST*.xml'
-    }
-
     always {
       cleanWs()
     }
