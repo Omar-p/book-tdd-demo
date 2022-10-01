@@ -6,14 +6,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.net.URI;
+import java.util.List;
 
 @Slf4j
 @AllArgsConstructor
@@ -34,5 +31,15 @@ public class BookController {
     headers.setLocation(uriComponents.toUri());
 
     return new ResponseEntity<>(headers, HttpStatus.CREATED);
+  }
+
+  @GetMapping
+  public ResponseEntity<List<Book>> getAllBooks() {
+    return ResponseEntity.ok(this.bookService.getAllBooks());
+  }
+
+  @GetMapping("/{id}")
+  public Book getBook(@PathVariable("id") Long id) {
+    return this.bookService.getBookById(id);
   }
 }
