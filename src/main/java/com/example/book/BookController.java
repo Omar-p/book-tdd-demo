@@ -42,4 +42,17 @@ public class BookController {
   public Book getBook(@PathVariable("id") Long id) {
     return this.bookService.getBookById(id);
   }
+
+  @PutMapping("/{id}")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  public Book updateBook(@PathVariable("id") Long id, @RequestBody BookRequest bookRequest) {
+    return this.bookService.updateBook(id, bookRequest);
+  }
+
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Void> deleteBook(@PathVariable("id") Long id) {
+    this.bookService.deleteBook(id);
+    return ResponseEntity.noContent().build();
+  }
+
 }
